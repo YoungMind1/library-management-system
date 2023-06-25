@@ -48,6 +48,15 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "test": [
+            "./vendor/bin/pest"
+        ],
+        "format": [
+            "./vendor/bin/pint"
+        ],
+        "analyse": [
+            "vendor/bin/phpstan analyse"
         ]
     },
     "extra": {
