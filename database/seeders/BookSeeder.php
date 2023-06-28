@@ -16,9 +16,6 @@ class BookSeeder extends Seeder
         Book::factory(10)->has(
             Copy::factory()
                 ->count(10)
-                ->state(function (array $attributes, Book $book) {
-                    return ['book_id', $book->id];
-                })
         )->create();
     }
 }
