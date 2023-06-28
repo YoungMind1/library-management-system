@@ -15,7 +15,7 @@ class Category extends Model
         'name',
     ];
 
-    public function newFactory(): CategoryFactory
+    protected static function newFactory(): CategoryFactory
     {
         return CategoryFactory::new();
     }

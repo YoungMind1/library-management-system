@@ -16,7 +16,7 @@ class Book extends Model
         'name', 'ISBN',
     ];
 
-    public function newFactory(): BookFactory
+    protected static function newFactory(): BookFactory
     {
         return BookFactory::new();
     }

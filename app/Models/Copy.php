@@ -10,7 +10,7 @@ class Copy extends Model
 {
     use HasFactory;
 
-    public function newFactory(): CopyFactory
+    protected static function newFactory(): CopyFactory
     {
         return CopyFactory::new();
     }

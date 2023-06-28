@@ -46,7 +46,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function newFactory(): UserFactory
+    protected static function newFactory(): UserFactory
     {
         return UserFactory::new();
     }
