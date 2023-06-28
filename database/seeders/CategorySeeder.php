@@ -14,6 +14,6 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $books = Book::all();
-        $categories = Category::factory(10)->recycle($books->random(2))->create();
+        $categories = Category::factory(10)->hasAttached($books->random(2))->create();
     }
 }
