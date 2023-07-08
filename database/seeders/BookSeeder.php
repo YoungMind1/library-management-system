@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Book;
+use App\Models\Category;
 use App\Models\Copy;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -15,16 +16,25 @@ class BookSeeder extends Seeder
     public function run(): void
     {
         $users = User::all();
+        $categories = Category::all();
 
         Book::factory(10)->has(
             Copy::factory(10)
-                ->hasAttached(
-                    $users->random(1),
-                    [
-                        'due_date' => now()->addWeeks(2),
-                        'created_at' => now(),
-                    ]
-                )
-        )->create();
+        )->hasImage(1)->create();
+
+        $books = Book::all();
+
+        foreach ($books as $book) {
+            $copies = $book->copies->each(function (Copy $copy) use ($users) {
+                if (random_int(0, 1)) {
+                    $copy->users()->attach($users->random(1), ['updated_at' => now()->subWeek(), 'created_at' => now()->subWeek(), 'due_date' => now()]);
+                }
+                if (random_int(0, 1)) {
+                    $copy->users()->attach($users->random(1), ['due_date' => now()->addWeeks(1)]);
+                }
+            });
+
+            $book->categories()->attach($categories->random(2));
+        }
     }
 }
