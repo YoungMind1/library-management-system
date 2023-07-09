@@ -101,20 +101,23 @@ class BookController extends Controller
                 'ISBN' => $request->get('ISBN'),
             ]);
 
-            $file = Storage::disk('public')->put($request->file('image')->getFilename(), $request->file('image')->get());
+            if ($request->hasFile('image')) {
+                $file = Storage::disk('public')->put($request->file('image')->getFilename(), $request->file('image')->get());
 
-            $image = Image::query()->create([
-                'storage' => 'public',
-                'path' => "storage/app/{$request->file('image')->getFilename()}",
-                'mime_type' => $request->file('image')->getMimeType(),
-                'size' => $request->file('image')->getSize(),
-                'imagable_id' => $book->id,
-                'imagable_type' => $book::class,
-            ]);
+                $image = Image::query()->create([
+                    'storage' => 'public',
+                    'path' => "storage/app/{$request->file('image')->getFilename()}",
+                    'mime_type' => $request->file('image')->getMimeType(),
+                    'size' => $request->file('image')->getSize(),
+                    'imagable_id' => $book->id,
+                    'imagable_type' => $book::class,
+                ]);
+            }
+
         } catch (\Throwable $th) {
             Log::error($th->getMessage(), $th->getTrace());
 
-            return redirect('/admin/books', 500);
+            return redirect('/admin/books/create')->withErrors($th->getMessage());
         }
 
         return redirect('/admin/books', 201);
