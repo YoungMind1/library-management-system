@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Book\BookStoreRequest;
+use App\Http\Requests\Book\BookUpdateRequest;
 use App\Models\Book;
 use App\Models\Category;
 use App\Models\Image;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -36,9 +36,40 @@ class BookController extends Controller
         return view('books.edit', $book);
     }
 
-    public function update(Book $book, Request $request)
+    public function update(Book $book, BookUpdateRequest $request)
     {
+        try {
+            $old_path = $book->image->path;
 
+            $book->query()->update([
+                'name' => $request->get('name'),
+                'ISBN' => $request->get('ISBN'),
+            ]);
+
+            if ($request->hasFile('image')) {
+                $file = Storage::disk('public')->put($request->file('image')->getFilename(), $request->file('image')->get());
+
+                $book->image()->getQuery()->update([
+                    'storage' => 'public',
+                    'path' => "storage/app/{$request->file('image')->getFilename()}",
+                    'mime_type' => $request->file('image')->getMimeType(),
+                    'size' => $request->file('image')->getSize(),
+                    'imagable_id' => $book->id,
+                    'imagable_type' => $book::class,
+                ]);
+            } else {
+                $book->image()->getQuery()->delete();
+            }
+
+            //remove the old one
+            Storage::disk('public')->delete($old_path);
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage(), $th->getTrace());
+
+            return redirect('/admin/books/create')->withErrors($th->getMessage());
+        }
+
+        return redirect(route('admin.books.show', $book), 201);
     }
 
     public function destroy(Book $book): RedirectResponse
