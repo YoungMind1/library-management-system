@@ -6,7 +6,7 @@ use App\Models\Book;
 
 class HomeController extends Controller
 {
-    public function __invoke()
+    public function home()
     {
         $q = \request()->get('s');
         $books = Book::query();
@@ -15,5 +15,12 @@ class HomeController extends Controller
         }
 
         return view('home', ['books' => $books->paginate()]);
+    }
+
+    public function show(Book $book)
+    {
+        $book = $book->with('copies')->get()[0];
+
+        return view('books.show', ['book' => $book]);
     }
 }
