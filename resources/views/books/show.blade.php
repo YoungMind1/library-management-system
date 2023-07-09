@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    
+
     <div class="max-w-2xl mx-auto px-4 py-8">
         <div class="flex flex-col md:flex-row">
             <!-- Book Thumbnail -->
             <div class="w-full md:w-1/3">
-                <img src="{{asset($book->image->path)}}" alt="Book Cover" class="w-full h-auto">
+                <img src="{{asset($book->image?->path) ?? asset('img/default-book.png')}}" alt="Book Cover" class="w-full h-auto">
             </div>
             <!-- Book Details -->
             <div class="w-full md:w-2/3 md:pl-8">
