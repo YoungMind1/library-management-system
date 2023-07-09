@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Book\BookStoreRequest;
 use App\Models\Book;
 use App\Models\Category;
 use App\Models\Image;
@@ -60,7 +61,7 @@ class BookController extends Controller
         return view('books.create', ['categories' => $categories]);
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(BookStoreRequest $request): RedirectResponse
     {
         try {
             $book = Book::query()->create([
