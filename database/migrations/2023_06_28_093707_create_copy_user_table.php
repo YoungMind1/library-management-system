@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->nullable(false)->constrained();
             $table->foreignIdFor(Copy::class)->nullable(false)->constrained();
             $table->date('due_date');
+            $table->boolean('returned')->default(false);
             $table->timestamps();
         });
     }

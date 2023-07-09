@@ -28,9 +28,10 @@ class BookSeeder extends Seeder
             $copies = $book->copies->each(function (Copy $copy) use ($users) {
                 if (random_int(0, 1)) {
                     $copy->users()->attach($users->random(1), ['updated_at' => now()->subWeek(), 'created_at' => now()->subWeek(), 'due_date' => now()]);
-                }
-                if (random_int(0, 1)) {
+                } elseif (random_int(0, 1)) {
                     $copy->users()->attach($users->random(1), ['due_date' => now()->addWeeks(1)]);
+                } elseif (random_int(0, 1)) {
+                    $copy->users()->attach($users->random(1), ['updated_at' => now()->subWeek(), 'created_at' => now()->subWeek(), 'due_date' => now(), 'returned' => true]);
                 }
             });
 
