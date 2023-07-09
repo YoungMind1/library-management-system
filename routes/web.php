@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::prefix('admin/')->name('admin.')->group(function () {
+Route::prefix('admin/')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
     Route::prefix('books/')->name('books.')->group(function () {
         Route::get('', [BookController::class, 'index'])->name('index');
         Route::get('create', [BookController::class, 'create'])->name('create');
@@ -46,6 +46,6 @@ Route::prefix('admin/')->name('admin.')->group(function () {
         Route::patch('{category}', [CategoryController::class, 'update'])->name('update');
         Route::delete('{category}', [CategoryController::class, 'destroy'])->name('destroy');
     });
-})->middleware(['auth', 'role:admin']);
+});
 
 require __DIR__.'/auth.php';
