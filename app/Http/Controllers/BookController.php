@@ -6,6 +6,7 @@ use App\Http\Requests\Book\BookStoreRequest;
 use App\Http\Requests\Book\BookUpdateRequest;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Copy;
 use App\Models\Image;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
@@ -117,5 +118,23 @@ class BookController extends Controller
         }
 
         return redirect('/admin/books', 201);
+    }
+
+    public function addCopy(Book $book)
+    {
+        $book->copies()->create();
+
+        return redirect()->back();
+    }
+
+    public function removeCopy(Book $book, Copy $copy)
+    {
+        if ($copy->users()->getQuery()->where('returned', false)->exists()) {
+            return redirect()->back()->withErrors('Someone is holding this copy, we cannot delete it');
+        }
+
+        $copy->delete();
+
+        return redirect()->back();
     }
 }
