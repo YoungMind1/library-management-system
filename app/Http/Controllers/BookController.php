@@ -83,7 +83,7 @@ class BookController extends Controller
             return redirect('/admin/books', 500);
         }
 
-        return redirect('admin.books.index');
+        return redirect(route('admin.books.index'));
     }
 
     public function create()
