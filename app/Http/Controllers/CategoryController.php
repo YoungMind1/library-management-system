@@ -17,11 +17,6 @@ class CategoryController extends Controller
         return view('categories.index', ['categories' => $categories]);
     }
 
-    public function show(Category $category)
-    {
-        return view('categories.show', ['category' => $category]);
-    }
-
     public function store(CategoryStoreRequest $request)
     {
         $data = $request->validated();
