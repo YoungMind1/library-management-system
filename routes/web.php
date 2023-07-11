@@ -35,9 +35,9 @@ Route::prefix('admin/')->name('admin.')->middleware(['auth', 'role:admin'])->gro
         Route::post('', [BookController::class, 'store'])->name('store');
         Route::patch('{book}', [BookController::class, 'update'])->name('update');
         Route::delete('{book}', [BookController::class, 'destroy'])->name('destroy');
+        Route::delete('{book}/{copy}', [BookController::class, 'removeCopy'])->name('removeCopy');
+        Route::post('{book}/add-copy', [BookController::class, 'addCopy'])->name('addCopy');
     });
-    Route::delete('{book}/{copy}', [BookController::class, 'removeCopy'])->name('removeCopy');
-    Route::post('{book}/add-copy', [BookController::class, 'addCopy'])->name('addCopy');
 
     Route::prefix('categories/')->name('categories.')->group(function () {
         Route::get('', [CategoryController::class, 'index'])->name('index');
