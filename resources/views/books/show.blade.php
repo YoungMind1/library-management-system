@@ -36,7 +36,11 @@
                     @foreach($book->copies as $copy)
                         <tr>
                             <td class="px-7 py-4 whitespace-nowrap">{{$copy->id}}</td>
-                            <td class="px-7 py-4 whitespace-nowrap">{{$copy->status === App\Enums\CopyStatusEnum::BORROWERD ? "Currenly borrowerd by " . $copy->currentBorrower : 'Available'}}</td>
+                            @role('admin')
+                                <td class="px-7 py-4 whitespace-nowrap">{{$copy->status === App\Enums\CopyStatusEnum::BORROWERD ? "Currenly borrowerd by " . $copy->currentBorrower : 'Available'}}</td>
+                            @else
+                                <td class="px-7 py-4 whitespace-nowrap">{{$copy->status === App\Enums\CopyStatusEnum::BORROWERD ? "Currenly borrowerd" : 'Available'}}</td>
+                            @endrole
                         </tr>
                     @endforeach
                     </tbody>
