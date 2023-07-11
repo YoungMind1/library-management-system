@@ -106,7 +106,7 @@ class BookController extends Controller
 
                 $image = Image::query()->create([
                     'storage' => 'public',
-                    'path' => "storage/app/{$request->file('image')->getFilename()}",
+                    'path' => "storage/{$request->file('image')->getFilename()}",
                     'mime_type' => $request->file('image')->getMimeType(),
                     'size' => $request->file('image')->getSize(),
                     'imagable_id' => $book->id,
