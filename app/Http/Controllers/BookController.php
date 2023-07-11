@@ -34,7 +34,7 @@ class BookController extends Controller
 
     public function edit(Book $book)
     {
-        return view('books.edit', $book);
+        return view('books.edit', ['book' => $book]);
     }
 
     public function update(Book $book, BookUpdateRequest $request)
