@@ -8,9 +8,9 @@
         <form action="{{ route('admin.books.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-4">
-                <label for="title" class="block text-gray-700 font-bold mb-2">Title</label>
-                <input type="text" name="title" id="title" class="form-input rounded-md shadow-sm border-gray-300" value="{{ old('title') }}" required autofocus>
-                @error('title')
+                <label for="name" class="block text-gray-700 font-bold mb-2">Title</label>
+                <input type="text" name="name" id="name" class="form-input rounded-md shadow-sm border-gray-300" value="{{ old('name') }}" required autofocus>
+                @error('name')
                     <p class="text-red-500 mt-2">{{ $message }}</p>
                 @enderror
             </div>
@@ -27,16 +27,16 @@
                 @enderror
             </div>
             <div class="mb-4">
-                <label for="isbn" class="block text-gray-700 font-bold mb-2">ISBN</label>
-                <input type="text" name="isbn" id="isbn" class="form-input rounded-md shadow-sm border-gray-300" value="{{ old('isbn') }}" required>
-                @error('isbn')
+                <label for="ISBN" class="block text-gray-700 font-bold mb-2">ISBN</label>
+                <input type="text" name="ISBN" id="ISBN" class="form-input rounded-md shadow-sm border-gray-300" value="{{ old('ISBN') }}" required>
+                @error('ISBN')
                     <p class="text-red-500 mt-2">{{ $message }}</p>
                 @enderror
             </div>
             <div class="mb-4">
                 <label for="image" class="block text-gray-700 font-bold mb-2">Cover Image</label>
                 <input type="file" name="image" id="image" class="form-input rounded-md shadow-sm border-gray-300" accept="image/*" required>
-                @error('cover_image')
+                @error('image')
                     <p class="text-red-500 mt-2">{{ $message }}</p>
                 @enderror
             </div>
