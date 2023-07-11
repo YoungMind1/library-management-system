@@ -48,7 +48,7 @@ class CategoryController extends Controller
             return redirect('/admin/category', 500);
         }
 
-        return redirect('admin.category.index');
+        return redirect(route('admin.categories.index'));
     }
 
     public function edit(Category $category)
@@ -68,6 +68,7 @@ class CategoryController extends Controller
 
             return redirect('/admin/categories', 500);
         }
-        redirect('admin.category.index');
+
+        return redirect(route('admin.categories.index'));
     }
 }
