@@ -27,8 +27,6 @@ class BookController extends Controller
 
     public function show(Book $book)
     {
-        $book = $book->with('copies')->get()[0];
-
         return view('books.show', ['book' => $book]);
     }
 
