@@ -50,7 +50,7 @@ class BookController extends Controller
 
                 $book->image()->getQuery()->update([
                     'storage' => 'public',
-                    'path' => "storage/app/{$request->file('image')->getFilename()}",
+                    'path' => "storage/{$request->file('image')->getFilename()}",
                     'mime_type' => $request->file('image')->getMimeType(),
                     'size' => $request->file('image')->getSize(),
                     'imagable_id' => $book->id,
