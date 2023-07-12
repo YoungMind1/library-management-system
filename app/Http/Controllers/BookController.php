@@ -45,6 +45,10 @@ class BookController extends Controller
                 'ISBN' => $request->get('ISBN'),
             ]);
 
+            if ($request->has('category')) {
+                $book->categories()->sync([$request->has('category')]);
+            }
+
             if ($request->hasFile('image')) {
                 $file = Storage::disk('public')->put($request->file('image')->getFilename(), $request->file('image')->get());
 
@@ -99,6 +103,9 @@ class BookController extends Controller
                 'ISBN' => $request->get('ISBN'),
             ]);
 
+            if ($request->has('category')) {
+                $book->categories()->sync([Category::query()->find($request->get('category'))->id]);
+            }
             if ($request->hasFile('image')) {
                 $file = Storage::disk('public')->put($request->file('image')->getFilename(), $request->file('image')->get());
 

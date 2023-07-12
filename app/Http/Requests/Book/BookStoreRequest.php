@@ -17,6 +17,7 @@ class BookStoreRequest extends FormRequest
             'name' => 'required|string|min:1|max:255',
             'ISBN' => 'required|string|min:1|max:255',
             'image' => 'nullable|image|max:2048',
+            'category' => 'nullable',
         ];
     }
 }
