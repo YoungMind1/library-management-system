@@ -16,7 +16,7 @@
             </div>
             <div class="mb-4">
                 <label for="category" class="block text-gray-700 font-bold mb-2">Category</label>
-                <select name="category" id="category" class="form-select rounded-md shadow-sm border-gray-300" required>
+                <select name="category" id="category" class="form-select rounded-md shadow-sm border-gray-300">
                     <option value="">Select a category</option>
                     @foreach($categories as $category)
                         <option value="{{$category->id}}" {{ old('category') == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
@@ -35,7 +35,7 @@
             </div>
             <div class="mb-4">
                 <label for="image" class="block text-gray-700 font-bold mb-2">Cover Image</label>
-                <input type="file" name="image" id="image" class="form-input rounded-md shadow-sm border-gray-300" accept="image/*" required>
+                <input type="file" name="image" id="image" class="form-input rounded-md shadow-sm border-gray-300" accept="image/*">
                 @error('image')
                     <p class="text-red-500 mt-2">{{ $message }}</p>
                 @enderror

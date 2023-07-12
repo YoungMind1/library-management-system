@@ -8,8 +8,8 @@
         <form action="{{ route('admin.categories.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-4">
-                <label for="name" class="block text-gray-700 font-bold mb-2">Title</label>
-                <input type="name" name="name" id="name" class="form-input rounded-md shadow-sm border-gray-300" value="{{ old('title') }}" required autofocus>
+                <label for="name" class="block text-gray-700 font-bold mb-2">Name</label>
+                <input type="name" name="name" id="name" class="form-input rounded-md shadow-sm border-gray-300" value="{{ old('name') }}" required autofocus>
                 @error('name')
                     <p class="text-red-500 mt-2">{{ $message }}</p>
                 @enderror
