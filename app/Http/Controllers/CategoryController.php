@@ -30,7 +30,7 @@ class CategoryController extends Controller
             return redirect('/admin/categories', 500);
         }
 
-        return redirect('admin.categories.index', 201);
+        return redirect(route('admin.categories.index'), 201);
     }
 
     public function create()

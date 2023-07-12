@@ -69,7 +69,7 @@ class BookController extends Controller
         } catch (\Throwable $th) {
             Log::error($th->getMessage(), $th->getTrace());
 
-            return redirect('/admin/books/create')->withErrors($th->getMessage());
+            return redirect(route('/admin/books/edit', $book))->withErrors(['error' => $th->getMessage()]);
         }
 
         return redirect(route('admin.books.show', $book), 201);
@@ -82,7 +82,7 @@ class BookController extends Controller
         } catch (\Throwable $th) {
             Log::error($th->getMessage(), $th->getTrace());
 
-            return redirect('/admin/books', 500);
+            return redirect('/admin/books')->withErrors(['error' => $th->getMessage()]);
         }
 
         return redirect(route('admin.books.index'));
