@@ -3,7 +3,7 @@
 @section('content')
     <div class="max-w-2xl mx-auto px-4 py-8">
         <h1 class="text-2xl font-bold mb-4">Edit User</h1>
-        <form action="{{ route('admin.users.update', $user) }}" method="" enctype="multipart/form-data">
+        <form action="{{ route('admin.users.update', $user->id) }}" method="" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <div class="mb-4">

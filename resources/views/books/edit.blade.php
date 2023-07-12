@@ -3,7 +3,7 @@
 @section('content')
     <div class="max-w-2xl mx-auto px-4 py-8">
         <h1 class="text-2xl font-bold mb-4">New Book</h1>
-        <form action="{{ route('admin.books.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.books.update', $book->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-4">
                 <label for="title" class="block text-gray-700 font-bold mb-2">Title</label>
