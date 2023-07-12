@@ -16,7 +16,7 @@ class LendController extends Controller
             $records->where('user_id', 'like', '%'.$q)->orWhere('copy_id', 'like', '%'.$q);
         }
 
-        return view('lends.index', ['records' => $records->paginate()]);
+        return view('lends.index', ['records' => $records->paginate(10)]);
     }
 
     public function takeBackPage()

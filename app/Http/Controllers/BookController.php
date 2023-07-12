@@ -22,7 +22,7 @@ class BookController extends Controller
             $books->where('name', 'like', '%'.$q.'%');
         }
 
-        return view('books.index', ['books' => $books->paginate()]);
+        return view('books.index', ['books' => $books->paginate(10)]);
     }
 
     public function show(Book $book)

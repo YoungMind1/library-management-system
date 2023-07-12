@@ -8,13 +8,13 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $q = \request()->get('s');
+        $q = \request()->get('query');
         $books = Book::query();
         if ($q) {
             $books->where('name', 'like', '%'.$q.'%');
         }
 
-        return view('home', ['books' => $books->paginate()]);
+        return view('home', ['books' => $books->paginate(10)]);
     }
 
     public function show(Book $book)
