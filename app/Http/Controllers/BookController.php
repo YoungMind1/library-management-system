@@ -40,7 +40,7 @@ class BookController extends Controller
         try {
             $old_path = $book->image->path;
 
-            $book->query()->update([
+            $book->update([
                 'name' => $request->get('name'),
                 'ISBN' => $request->get('ISBN'),
             ]);
