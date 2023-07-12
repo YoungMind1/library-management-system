@@ -52,7 +52,7 @@ class BookController extends Controller
             if ($request->hasFile('image')) {
                 $file = Storage::disk('public')->put($request->file('image')->getFilename(), $request->file('image')->get());
 
-                $book->image()->getQuery()->update([
+                $book->image->update([
                     'storage' => 'public',
                     'path' => "storage/{$request->file('image')->getFilename()}",
                     'mime_type' => $request->file('image')->getMimeType(),

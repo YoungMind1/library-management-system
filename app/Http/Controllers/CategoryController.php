@@ -60,7 +60,7 @@ class CategoryController extends Controller
     {
         $data = $request->validated();
         try {
-            $category = Category::query()->update([
+            $category->update([
                 'name' => $data['name'],
             ]);
         } catch (\Throwable $th) {
