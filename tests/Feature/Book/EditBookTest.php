@@ -89,7 +89,7 @@ test('admins can update a book', function () {
     $book->refresh();
     expect($data['name'])->toEqual($book->name);
     expect($data['ISBN'])->toEqual($book->ISBN);
-    expect('storage/app/'.$data['image']->getFilename())->toEqual($book->image->path);
+    expect('storage/'.$data['image']->getFilename())->toEqual($book->image->path);
 
     Storage::disk('public')->assertExists($data['image']->getBasename());
 });
