@@ -16,6 +16,39 @@
                         {{ __('Home') }}
                     </x-nav-link>
                 </div>
+
+                @role('admin')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('admin.books.index')" :active="request()->routeIs('admin.books.index')">
+                            {{ __('Books') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('admin.categories.index')" :active="request()->routeIs('admin.categories.index')">
+                            {{ __('Categories') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('admin.lends.index')" :active="request()->routeIs('admin.lends.index')">
+                            {{ __('Lends') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
+                            {{ __('Users') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('admin.lends.borrow-page')" :active="request()->routeIs('admin.lends.borrow-page')">
+                            {{ __('Give a Book') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('admin.lends.take-back-page')" :active="request()->routeIs('admin.lends.take-back-page')">
+                            {{ __('Take Back Page') }}
+                        </x-nav-link>
+                    </div>
+                @endrole
             </div>
 
             @auth
