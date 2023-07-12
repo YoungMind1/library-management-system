@@ -8,7 +8,7 @@
             <div class="mb-5">
                 <form action="#" method="get">
                     <div class="flex">
-                        <input type="text" name="q" class="block w-full px-5 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-500" placeholder="Search Book">
+                        <input type="text" name="query" class="block w-full px-5 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-500" placeholder="Search Book">
                         <button type="submit" class="px-5 py-2 ml-2 text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-500">Search</button>
                     </div>
                 </form>
